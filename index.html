@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#11120f" />
+  <title>Crosscheck — Ask the field</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Crosscheck home"><span class="brand-mark">×</span><span>CROSSCHECK</span></a>
+      <div class="top-actions"><span class="live-dot"></span><span id="connection-label">Not connected</span><button class="settings-button" id="settings-open" aria-label="Open settings">⚙</button></div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="eyebrow"><span>FIELD NOTES / 001</span><span class="eyebrow-line"></span><span>MODEL COMPARISON</span></div>
+        <h1>One question.<br /><em>Many minds.</em></h1>
+        <p class="intro-copy">Send the same prompt to independent AI models. Read their answers side by side, then map the consensus and the friction.</p>
+      </section>
+
+      <section class="workspace">
+        <div class="compose-panel">
+          <div class="section-head"><div><span class="step">01</span><h2>Set the question</h2></div><span class="hint">Same words. Every model.</span></div>
+          <label class="sr-only" for="question">Your question</label>
+          <textarea id="question" maxlength="1200" placeholder="What do people misunderstand about the future of work?" rows="4"></textarea>
+          <div class="prompt-footer"><span id="char-count">0 / 1200</span><button id="example-button" class="text-button">Try an example ↗</button></div>
+          <div class="model-head"><div><span class="step">02</span><h2>Choose your panel</h2></div><span class="hint" id="model-count">Loading models…</span></div>
+          <div class="model-toolbar"><button id="select-panel" class="text-button">Select a cross-lab panel</button><button id="clear-models" class="text-button muted">Clear</button></div>
+          <div id="models" class="model-grid"><div class="loading">Finding available models…</div></div>
+          <div class="run-row"><div class="cost-note"><span class="cost-icon">◎</span><span>Each answer uses your connected Pollen.</span></div><button id="run-button" class="run-button" disabled><span>Run comparison</span><span>↗</span></button></div>
+          <div id="notice" class="notice" role="status"></div>
+        </div>
+
+        <section id="results-section" class="results-section hidden">
+          <div class="section-head result-heading"><div><span class="step">03</span><h2>The room</h2></div><span id="run-summary" class="hint"></span></div>
+          <div id="insight" class="insight hidden"></div>
+          <div id="answer-grid" class="answer-grid"></div>
+        </section>
+      </section>
+      <footer><span>Powered by <strong>Pollinations</strong></span><span>Different models. One shared question.</span><button id="settings-footer" class="footer-link">Connection settings</button></footer>
+    </main>
+  </div>
+
+  <dialog id="settings-dialog">
+    <form method="dialog" class="dialog-head"><div><span class="step">CONNECTION</span><h2>Bring your own Pollen</h2></div><button class="close-button" aria-label="Close">×</button></form>
+    <p>Connect through Pollinations to authorize a capped, revocable key for this session. Your key stays in this tab and requests are billed to your Pollen.</p>
+    <div class="connect-wrap"><polli-connect id="polli-connect" app-key="pk_ZLHxDn0WkwRDaNC6" budget="5" expiry="7" models="text"></polli-connect></div>
+    <div class="key-fallback"><label for="manual-key">Or use a personal API key for this tab</label><div class="key-row"><input id="manual-key" type="password" autocomplete="off" placeholder="sk_…" /><button id="use-key" type="button">Connect</button></div><small>Session only; never saved to disk or sent anywhere except Pollinations.</small></div>
+    <a class="docs-link" href="https://enter.pollinations.ai/" target="_blank" rel="noreferrer">Create an App Key in Pollinations ↗</a>
+  </dialog>
+  <script defer src="https://cdn.jsdelivr.net/npm/@pollinations/ui@0.1.0-alpha.20/dist/connect.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
